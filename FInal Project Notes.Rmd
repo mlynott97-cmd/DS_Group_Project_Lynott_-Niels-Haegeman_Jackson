@@ -1,0 +1,28 @@
+---
+title: "Final Project Ideas"
+output: pdf_document
+date: "2025-10-08"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 5: 
+
+- Relationship between inflation in NYC and a vote for Mamdani in the upcoming NYC mayoral election
+
+One question we are interested in asking is what is the relationship between inflation in NYC and vote support for Mamdani in the upcoming NYC mayoral election? 
+This is important because we want to assess the impact of an economic factor like inflation on the results of the upcoming Mayoral election. The center of Mamdani's campaign is making NYC more affordable, so it will be important to measure the impact of inflation on the election results. It also will help to serve as an indicator for Democrats leading up to the 2026 midterms on the importance of economic policies in campaigning. 
+First, we will use linear regression to predict if inflation will have an impact on vote support for Mamdani. Then once the election happens, we can investigate the relationship by seeing if there is a correlation between the inflation rate and turnout for Mamdani. 
+We will use NYC Data (https://opendata.cityofnewyork.us/) and other publicly available polling to conduct this study. 
+
+We are also potentially interested in investigating the following research questions: 
+
+•	What is the relationship between campaign spending and the result of the 2024 national presidential election? 
+•	What is the relationship between campaign spending and the result of the 2025 NYC mayoral election? 
+
+More specifically, we are interested in investigating if spending more money during campaigns results in winning an election. This is important because it will give us insight into what campaigns need to focus on - fundraising, or potentially other aspects of the campaign like community outreach. It will also help inform if campaigns need to focus on collecting small or large donations. 
+
+We are interested in exploring this either at the NYC or national level. We can analyze the post-election results to determine if there is a predictive relationship between spending more on campaigns and winning elections. 
+We will select our target audience for our study depending on what data is available. We will utilize public polling, NYC Data (https://opendata.cityofnewyork.us/), and public data available on the FEC's website.
