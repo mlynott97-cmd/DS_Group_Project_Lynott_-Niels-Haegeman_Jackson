@@ -1,0 +1,46 @@
+---
+title: "Final Project Proposal"
+output: html_document
+date: "2025-10-30"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Research Question: 
+
+Is the amount of campaign contribution the most significant predictor of the upcoming NYC mayoral election? 
+
+Hypothesis: Our hypothesis is that campaign spend is NOT the most significant predictor in the results of the upcoming NYC mayoral election. We hypothesize that Andrew Cuomo has spent more in this campaign than Zohran Mamndami, and yet we expect Mamdani will be the winner. 
+
+We hypothesize there are other more significant predictors of the election result than campaign spend, such as age of the electorate that turned out to vote, and the importance of afforadibility as a key issue in this election. 
+
+For the purposes of our study, we will collect data on how much campaign contribution each of the remaining three candidates recieved: Zohran Mamdani, Andrew Cuomo, and Curtis Sliwa. All of this data is publicly available via the NYC Campagin Finance Board. We will merge data sets across all three candidates in R and include the name of the candidate and the amount of candidate contributions as variables.
+We do anticipate we will need to remove some missing values and work through some merging issues that arise. 
+ - Link to public data sets for NYC mayoral race: https://www.nyccfb.info/ftmsearch/Candidates/Contributions?ec=2025&rt=can&cand=1545&stmt=&trans=ABC
+ 
+ The other data source we will use is a public exit poll which will provide access to data on variables we will include as preditors in our model including age, household income, party ID, gender, race, and top issues in the NYC election. We can pull estimates for these values from a public exit poll, and then use for looping to create normal distriubtions for these variables assuming we took repeated samples. 
+ - Here is an example of a public poll after the NYC Democratic primary: https://www.cityandstateny.com/politics/2025/07/exit-poll-public-safety-tops-voter-concerns-nyc-dems-reject-policing-first-approach/406519/?utm_source=chatgpt.com
+    - Check with Alex and Sarah. If this does not work, we may want to switch to 2024 general and use data from class
+
+The campaign contribution spending data will be a continous variables. The data from the exit poll will likely be categorial variables, so we will need to recode as dummy variables in order to run the model. 
+
+We plan to use correlation and mutlivariate regression to analyze the relationship between the different predictors we select and the outcome of the upcoming mayoral election. These statistical methods will help us answer our research question, and determine which predictor is most significant in predicting the election result. 
+
+We can use ggplots to explore the correlation between the different variables. We also will interpret the summary of the multivariate regression we will run in R. 
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
