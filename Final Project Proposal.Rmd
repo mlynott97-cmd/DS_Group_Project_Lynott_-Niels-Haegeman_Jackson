@@ -7,6 +7,11 @@ date: "2025-10-30"
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+Next step: find data
+https://docs.google.com/spreadsheets/d/1wJKlI4ZCFYaZKopuoFwNnAAONFSYzZ6o4x3MaK2qDxI/edit?gid=0#gid=0
+
+Google doc file:
+https://docs.google.com/document/u/3/d/1xfPJl50X2T3uBfH07OuieEpaUOyiLg49MuIkeIac72c/edit?usp=sharing_eil&ts=6904c4ed
 
 Research Question: 
 
