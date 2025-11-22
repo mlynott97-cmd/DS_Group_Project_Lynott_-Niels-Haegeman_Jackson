@@ -1,0 +1,424 @@
+---
+title: "Final Project - Visual and Data Cleaning Code"
+output:
+  pdf_document: default
+  html_document: default
+date: "2025-11-18"
+---
+
+GitHub page to access data files: https://github.com/mlynott97-cmd/DS_Group_Project_Lynott_-Niels-Haegeman_Jackson
+
+Research Question: 
+How do patterns in votes for the Democratic candidate in the 2025 New York City mayoral election compare with voting patterns in the 2024 presidential election across Assembly Districts, and to what extent does demographic composition help explain differences between the two?
+
+Hypothesis: 
+Our hypothesis is that there are some key Democratic margin differences between the 2024 and 2025 elections by NYC Assembly District (AD). This includes certain competitive districts that may have voted more Democratic in one election compared to the other. Additionally, ADs that have young or non-white populations will show different relative shifts between the 2024 presidential vote and the 2025 mayoral vote compared with districts that have a higher share of white and older residents. We expect that these demographic differences will help explain variation in support for the Democratic candidates. 
+
+This question matters for political analytics because it combines real administrative data with census data to compare election results, spaced only a year apart, across the same districts. We anticipate seeing some significant changes in vote-margin among demographic subgroups, including young people and people of color. This research question is important to analyze the current state of Democratic politics in New York City. It will provide insights into which ADs and demographic subgroups future Democratic candidates should focus on turning out to vote in order to build successful voting coalitions. We also think this analysis will provide insight into the national state of Democratic politics, highlighting the differences in voting patterns for moderate versus more progressive, Democratic candidates. 
+
+Data Description: 
+
+To gather topline voting counts for both the 2024 presidential election and 2025 mayoral election, we used the following data sources to gather observational data on those who voted for the main party candidates in NYC: 
+
+Raw data including the vote counts for Kamala Harris and Donald Trump in the 2024 presidential election sourced from the Board of Elections in NYC. https://vote.nyc/page/election-results-summary-2024
+
+Raw data counts from the 2025 Mayoral election sourced from the Boards of Election in NYC https://web.enrboenyc.us/CD27286ADI0.html
+
+The key variables in each of these data sets include the raw vote counts, candidate names, and AD number. 
+
+To gather voting information on different demographic subgroups for both the 2024 presidential election and 2025 mayoral election, we used the following data sources: 
+
+Demographic data comes from the State Legislative Task Force’s 2020: https://latfor.state.ny.us/data/?sec=2020
+
+Demographic survey data comes from the American Community Survey 2023, 5-year estimate: https://data.census.gov/app/mdat/ACSPUMS5Y2023/vars
+
+Across all sources, the unit of analysis is the Assembly District (AD). These districts vote in members of the New York State Assembly. AD’s 24 through 87 represent all of New York City. As mentioned previously, we have raw data on voting outcomes. For demographic data concerning ethnicity and race, we have data from the 2020 census, which accurately maps the actual number of people identifying to each racial or ethnic category (in other words, this is also not a sample). For data coming from the ACS survey, they sample 3.5 million households every year. We use the 5-year estimate, which compiles the sample over a period of 5 years and is thus more accurate than using a 1-year estimate. It does not have weights, and they report an estimate with a margin of error, not the actual sample result. All of the data we are using is cross-sectional and observational.
+
+Preliminary Visualization & Analysis: 
+
+Variables, Choice of Visualization, Interpretation
+
+We were able to produce several initial visualizations to use in our final project.
+
+First, we were able to pull a shape file of the Assembly District Map in NYC and upload this in R Studio to display the different vote counts geographically. The shape file was sourced from the NYC Department of City Planning. https://www.nyc.gov/content/planning/pages/resources/datasets/state-assembly
+
+The data we are displaying with the map visual is the difference in Democratic vote counts between Harris and Mamdami. By the shading of the map, we can clearly see Harris earned more votes overall. However, there are some pockets of equally dark blue ADs that voted for Mamdani, which will provide us insight into the type of voters who solidly supported both Harris and Mamdani. 
+
+We also pulled a map to see the difference in vote counts for Trump in 2024 and Cuomo in 2025 per assembly district. We are able to see the geographic similarities where voters decided to vote for both candidates, which we think is surprising and interesting given these are candidates from two different parties and provides us interesting information to analyze on the more moderate sect of the Democratic party. These map visuals allow us to clearly see the differences in voting patterns geographically. They also directly relate to our research question because they show us how voters voted comparatively between the two elections. This supports our hypothesis in that we are able to see the ADs that voted the most Democratic in both elections. 
+
+The second visual we were able to create is a series of plot graphs where we are better able to visualize the relationship between voting patterns for both elections. This provides insight into which ADs have solidly positive Democratic margins across both elections, which had solidly negative margins, and which had a positive margin in one election but a negative in another. We are eager to delve deeper into the demographic distributions of the split districts to highlight who the most competitive voters are for Democrats moving forward. 
+
+We pulled very similar plot charts to analyze the distribution of vote counts for Mamdami versus Harris, as well as Mamdami versus Cuomo. One interesting finding we found right away is both the voting distributions for Harris and Mamdani are linear, while the voting distribution for Cuomo is NOT linear. We are excited to delve deeper into what this means and its implications in the final paper. These plot graphs relate directly to our research question because they enable us to deeper analyze the differences in how voters voted by AD between the two elections. 
+
+Assumptions, Uncertainty, and Data Processing 
+
+Given we sourced our data from the NYC Election Boards, we are assuming the vote counts we collected are accurate. We feel fairly confident in the patterns we are seeing in our visualizations given we are working with raw data counts. One element of uncertainty is 2.64% of the 2025 Mayoral vote count has not been reported yet(https://web.enrboenyc.us/CD27286ADI0.html), however we anticipate the impact of this to be minimal on the broader conclusions we are able to draw in this report. 
+
+We had to transform and clean three different datasets before producing the visualizations. The first two were the raw data files including the vote counts for the 2024 and 2025 elections. We primarily used the dplyr package to conduct this cleaning, including selecting specific variables, filtering to only include the candidates of interest, renaming columns, and pivoting the data so we can see the vote counts for each candidate by assembly district. Once both files were cleaned, we were then able to merge the data sets by AD using left_join. Finally, we merged the shape file data by AD so we could create the map visuals. All of the data cleaning steps we took are clearly laid out in the code included in the R Markdown file accompanying this assignment.
+
+Next Steps:
+
+We will run a linear model to analyze the relationship between those who voted for Mamdani vs. Harris. We will run a non-linear regression to better understand the relationship between those who voted for Cuomo vs. Trump. We will use demographic data to add control variables including age, race, gender, income, and education. 
+
+We will visualize the coefficients of our regression analysis using a coefficient plot. Since our data is pretty robust, we will visualize the error from our regression analysis: For a few different comparisons (Mamdani vs. Harris, Cuomo vs. Trump, possibly more), we will use a dot plot to represent the coefficient from regression and include the 95% confidence interval measure. 
+
+We also will delve deeper into the Democratic margin differences by Assembly District to determine the most competitive districts for future Democratic candidates to consider. We also will use descriptive statistics to describe the demographic distribution of theseADs to better understand who these voters are. We will visualize the difference in demographic distributions between ADs using histograms or boxplots. 
+
+
+Code and Visuals
+
+
+```{r setup, Prepping 2024 data}
+
+library(tidyverse)
+library(dplyr)
+
+setwd("/Users/meganlynott/Documents/Fall 2025 Data Science in Political Analytics/Data Science FInal Project")
+
+results_2024 <- read.csv("results_2024 (4).csv")
+
+results_2024 <- results_2024 %>% 
+  select(X37, Public.Counter, X0)
+
+results_2024_cleaned <- results_2024 %>% 
+    rename(AD = X37, 
+           Unit_Name = Public.Counter, 
+           Tally = X0)
+ 
+results_2024_cleaned <- results_2024_cleaned %>%
+filter(Unit_Name %in% c("Kamala D. Harris / Tim Walz (Democratic)", "Donald J. Trump / JD Vance (Republican)", "Donald J. Trump / JD Vance (Conservative)", "Kamala D. Harris / Tim Walz (Working Families)"))
+
+results_2024_grouped <- results_2024_cleaned %>% 
+mutate(Unit_Name = case_when(
+Unit_Name == "Kamala D. Harris / Tim Walz (Democratic)" ~ "Harris/Walz", 
+Unit_Name == "Kamala D. Harris / Tim Walz (Working Families)" ~ "Harris/Walz", 
+Unit_Name == "Donald J. Trump / JD Vance (Republican)" ~ "Trump/Vance", 
+Unit_Name == "Donald J. Trump / JD Vance (Conservative)" ~ "Trump/Vance"))
+
+results_2024_grouped <- results_2024_grouped %>% 
+  mutate(Tally = as.numeric(Tally))
+
+results_2024_final <- results_2024_grouped %>% 
+  group_by(AD, Unit_Name) %>%
+  summarise(
+    total_tally = sum(Tally, na.rm = TRUE),
+    .groups = "drop"
+  ) %>% 
+  pivot_wider(
+    names_from  = Unit_Name,
+    values_from = total_tally
+  )
+
+results_2024_final <- results_2024_final %>%
+  mutate(AD = as.character(AD))
+
+```
+
+
+```{r setup, Prepping 2025 data}
+
+setwd("/Users/meganlynott/Documents/Fall 2025 Data Science in Political Analytics/Data Science FInal Project")
+
+library(dplyr)
+
+results_2025 <- read.csv("election_results_2025.csv")
+
+results_2025 <- results_2025 %>%
+  mutate(Mamdani = Zohran_K_Mamdani_Dem + Zohran_K_Mamdani_WF) %>% 
+  mutate(Sliwa = Curtis_A_Sliwa_Rep + Curtis_A_Sliwa_ProtectAnimals) %>%
+  rename(Cuomo = Andrew_M_Cuomo_FightDeliver)
+
+results_2025 <- results_2025 %>% 
+  select(AD, Mamdani, Sliwa, Cuomo)
+
+results_2025_non_dem_combo <- results_2025 %>% 
+  mutate(Sliwa.Cuomo = Sliwa + Cuomo)
+
+results_2025_non_dem_combo <- results_2025_non_dem_combo %>% 
+  select(AD, Mamdani, Sliwa.Cuomo, Cuomo)
+
+results_2025_non_dem_combo$AD <- sub("^AD\\s*", "", results_2025_non_dem_combo$AD)
+
+results_2025_final <- results_2025_non_dem_combo
+
+results_2025_final <- results_2025_final %>%
+  mutate(AD = as.character(AD))
+
+results_2025_final <- results_2025_final %>%
+    group_by(AD) %>%
+    summarize(across(everything(), sum, na.rm = TRUE))
+  
+```
+
+
+```{r setup, Merging Data Sets}
+
+library(dplyr)
+
+merged_results <- full_join(
+  results_2024_final,
+  results_2025_final,
+  by = "AD"
+)
+
+write.csv(merged_results, "merged_results.csv")
+
+```
+
+```{r setup, Creating Democratic Margins}
+
+library(dplyr)
+
+merged_results <- merged_results %>% 
+  mutate(
+    Pct_2024_Dem_vote = (`Harris/Walz`) / 
+                         (`Harris/Walz` + `Trump/Vance`),
+    Pct_2024_Rep_vote = (`Trump/Vance`) / 
+                         (`Harris/Walz` + `Trump/Vance`),
+  )
+
+merged_results <- merged_results %>% 
+  mutate(
+    Pct_2024_Dem_vote_margin = (Pct_2024_Dem_vote - Pct_2024_Rep_vote)
+  )
+
+merged_results <- merged_results %>% 
+  mutate(
+    Pct_2025_Dem_vote = (Mamdani) / 
+                         (Mamdani + Sliwa.Cuomo),
+    Pct_2025_Rep_vote = (Sliwa.Cuomo) / 
+                         (Mamdani + Sliwa.Cuomo),
+  )
+
+merged_results <- merged_results %>% 
+  mutate(
+    Pct_2025_Dem_vote_margin = (Pct_2025_Dem_vote - Pct_2025_Rep_vote)
+  )
+
+merged_results <- merged_results %>% 
+  mutate(
+   Dem_vote_PCT_change = (Pct_2025_Dem_vote_margin - Pct_2024_Dem_vote_margin)
+  )
+
+```
+
+```{r setup, Creating Democratic Margins -  Cuomo only}
+
+library(dplyr)
+
+merged_results <- merged_results %>% 
+  mutate(
+    Pct_2024_Dem_vote = (`Harris/Walz`) / 
+                         (`Harris/Walz` + `Trump/Vance`),
+    Pct_2024_Rep_vote = (`Trump/Vance`) / 
+                         (`Harris/Walz` + `Trump/Vance`),
+  )
+
+merged_results <- merged_results %>% 
+  mutate(
+    Pct_2024_Dem_vote_margin = (Pct_2024_Dem_vote - Pct_2024_Rep_vote)
+  )
+
+merged_results <- merged_results %>% 
+  mutate(
+    Pct_2025_Dem_vote = (Mamdani) / 
+                         (Mamdani + Cuomo),
+    Pct_2025_Rep_vote = (Cuomo) / 
+                         (Mamdani + Cuomo),
+  )
+
+merged_results <- merged_results %>% 
+  mutate(
+    Pct_2025_Dem_vote_margin = (Pct_2025_Dem_vote - Pct_2025_Rep_vote)
+  )
+
+merged_results <- merged_results %>% 
+  mutate(
+   Dem_vote_PCT_change = (Pct_2025_Dem_vote_margin - Pct_2024_Dem_vote_margin)
+  )
+
+```
+
+
+```{r setup, plotting 2025 Dem Margin vs. 2024 Dem Margin}
+
+library(ggplot2)
+library(dplyr)
+
+ggplot(data = merged_results) +
+  geom_text(
+    aes(
+      x = Pct_2024_Dem_vote_margin,
+      y = Pct_2025_Dem_vote_margin,
+      label = AD
+    ),
+    size = 3
+  ) +
+  geom_vline(xintercept = 0, color = "black", linewidth = 1.1) +  
+  geom_hline(yintercept = 0, color = "black", linewidth = 1.1) +
+  scale_x_continuous(expand = expansion(mult = 0.2)) +
+  scale_y_continuous(expand = expansion(mult = 0.2)) +
+  theme_minimal() + 
+  labs(
+    title = "Democratic PCT Vote Margin in election 2024 vs. 2025", 
+    x = "2024 Democratic PCT Vote Margin", 
+    y = "2025 Democratic PCT Vote Margin", 
+    
+  )
+
+```
+
+
+```{r setup, plotting votes for Mamdani vs. Harris}
+
+library(ggplot2)
+library(dplyr)
+
+Mamdani_vs_Harris <-ggplot(data = merged_results) +
+  geom_text(
+    aes(
+      x = `Harris/Walz`,
+      y = Mamdani,
+      label = AD
+    ),
+    size = 3
+  ) +
+  geom_vline(xintercept = 0, color = "black", linewidth = 1.1) +  
+  geom_hline(yintercept = 0, color = "black", linewidth = 1.1) +
+  scale_x_continuous(expand = expansion(mult = 0.2)) +
+  scale_y_continuous(expand = expansion(mult = 0.2)) +
+  theme_minimal() + 
+  labs(
+    x = "Raw vote count for Harris", 
+    y = "Raw vote count for Mamdani"
+  )
+
+```
+
+
+```{r setup, plotting votes for Mamdani vs. Cuomo}
+
+library(ggplot2)
+library(dplyr)
+library(gridExtra)
+library(grid)
+
+Cuomo_vs_Harris <- ggplot(data = merged_results) +
+  geom_text(
+    aes(
+      x = `Harris/Walz`,
+      y = Cuomo,
+      label = AD
+    ),
+    size = 3
+  ) +
+  geom_vline(xintercept = 0, color = "black", linewidth = 1.1) +  
+  geom_hline(yintercept = 0, color = "black", linewidth = 1.1) +
+  scale_x_continuous(expand = expansion(mult = 0.2)) +
+  scale_y_continuous(expand = expansion(mult = 0.2)) +
+  theme_minimal() + 
+  labs(
+    x = "Raw vote count for Harris", 
+    y = "Raw vote count for Cuomo"
+  )
+
+grid.arrange(
+  grobs = list(Mamdani_vs_Harris, Cuomo_vs_Harris),
+  ncol = 2,
+  top = textGrob(
+    "Comparing Vote Counts Between Mamdani, Cuomo, and Harris by NYC Assembly District"
+  )
+)
+
+```
+
+
+```{r setup, mapping dems}
+
+library(sf)
+library(ggplot2)
+library(dplyr)
+
+ny_assembly_districts_map <- st_read("nyad_25d 2")
+
+ggplot() +
+  geom_sf(data = ny_assembly_districts_map)
+
+
+ny_assembly_districts_map <- ny_assembly_districts_map %>% 
+  rename(AD = AssemDist)
+
+ny_assembly_districts_map <- ny_assembly_districts_map %>%
+  mutate(AD = as.character(AD))
+
+map_merged <- ny_assembly_districts_map %>%
+  left_join(merged_results, by = "AD")
+
+map_merged <- map_merged %>%
+  rename(Harris = `Harris/Walz`)
+
+Harris <- ggplot(data = map_merged) +
+      geom_sf(aes(fill = Harris)) +
+      scale_fill_gradient(low = "lightblue", high = "darkblue") +
+      labs(title = "Vote for Harris in 2024")
+ 
+Mamdani <- ggplot(data = map_merged) +
+      geom_sf(aes(fill = Mamdani)) +
+      scale_fill_gradient(low = "lightblue", high = "darkblue") +
+      labs(title = "Vote for Mamdani in 2025")
+ 
+ grid.arrange(Harris, Mamdani, ncol = 2)
+ 
+ grid.arrange(
+  grobs = list(Harris, Mamdani),
+  ncol = 2,
+  top = textGrob(
+    "Comparing Votes for Harris in 2024 vs. Mamdani in 2025 by NYC Assembly District"
+  )
+)
+
+```
+
+
+```{r setup, mapping reps}
+library(sf)
+library(ggplot2)
+library(dplyr)
+
+ny_assembly_districts_map <- st_read("nyad_25d 2")
+
+ggplot() +
+  geom_sf(data = ny_assembly_districts_map)
+
+
+ny_assembly_districts_map <- ny_assembly_districts_map %>% 
+  rename(AD = AssemDist)
+
+ny_assembly_districts_map <- ny_assembly_districts_map %>%
+  mutate(AD = as.character(AD))
+
+map_merged <- ny_assembly_districts_map %>%
+  left_join(merged_results, by = "AD")
+
+Trump <- ggplot(data = map_merged) +
+      geom_sf(aes(fill = `Trump/Vance`)) +
+      scale_fill_gradient(low = "pink", high = "darkred") +
+      labs(title = "Vote for Trump in 2024")
+ 
+Cuomo <- ggplot(data = map_merged) +
+      geom_sf(aes(fill = Cuomo)) +
+      scale_fill_gradient(low = "pink", high = "darkred") +
+      labs(title = "Vote for Cuomo in 2025")
+ 
+ grid.arrange(
+  grobs = list(Trump, Cuomo),
+  ncol = 2,
+  top = textGrob(
+    "Comparing Votes for Trump in 2024 vs. Cuomo in 2025 by NYC Assembly District"
+  )
+)
+ 
+```
+
+
+
